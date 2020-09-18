@@ -8,6 +8,7 @@
 
 package blusunrize.lib.manual;
 
+import blusunrize.immersiveengineering.client.manual.ManualExporter;
 import blusunrize.lib.manual.links.Link;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Either;
@@ -15,7 +16,10 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMaps;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntMaps;
+import net.minecraft.util.ResourceLocation;
 
+import java.io.File;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -105,6 +109,11 @@ public class SplitResult
 		public String getText()
 		{
 			return text;
+		}
+
+		public String genHTML(ManualEntry entry, ManualExporter exp)
+		{
+			return "<a href=\"" + parent.getTarget(entry).toString() + "\">" + text + "</a>";
 		}
 	}
 }

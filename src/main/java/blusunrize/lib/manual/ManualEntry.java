@@ -8,6 +8,8 @@
 
 package blusunrize.lib.manual;
 
+import blusunrize.immersiveengineering.client.manual.ManualExporter;
+import blusunrize.lib.manual.SplitResult.LinkPart;
 import blusunrize.lib.manual.SplitResult.Token;
 import blusunrize.lib.manual.gui.ManualScreen;
 import blusunrize.lib.manual.links.EntryWithLinks;
@@ -32,9 +34,11 @@ import org.apache.commons.lang3.tuple.Triple;
 import javax.annotation.Nonnull;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.regex.Pattern;
@@ -110,6 +114,22 @@ public class ManualEntry implements Comparable<ManualEntry>
 		RenderSystem.translatef(x, y+offsetSpecial, 0);
 		toRender.special.render(gui, 0, 0, mouseX, mouseY);
 		RenderSystem.popMatrix();
+	}
+
+	public void genHTML(ManualExporter exp, Writer stream, int page) throws IOException {
+		ManualPage toGen = pages.get(page);
+		if (toGen.special.isAbove()) {
+			toGen.special.genHTML(exp, stream);
+		}
+		for(List<Token> line: toGen.text) {
+			for(Token tok: line) {
+				stream.write(tok.getContent().map(Function.identity(), link -> link.genHTML(this, exp)));
+				stream.write(" ");
+			}
+		}
+		if (!toGen.special.isAbove()) {
+			toGen.special.genHTML(exp, stream);
+		}
 	}
 
 	public String getTitle()

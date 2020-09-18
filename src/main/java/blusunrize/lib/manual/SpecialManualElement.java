@@ -8,10 +8,13 @@
 
 package blusunrize.lib.manual;
 
+import blusunrize.immersiveengineering.client.manual.ManualExporter;
 import blusunrize.lib.manual.gui.ManualScreen;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.item.ItemStack;
 
+import java.io.IOException;
+import java.io.Writer;
 import java.util.List;
 
 public abstract class SpecialManualElement
@@ -45,4 +48,8 @@ public abstract class SpecialManualElement
 		return true;
 	}
 
+	public void genHTML(ManualExporter exp, Writer stream) throws IOException
+	{
+		stream.write("<div>&lt;" + this.getClass().getName() + "&gt;</div>\n");
+	}
 }
