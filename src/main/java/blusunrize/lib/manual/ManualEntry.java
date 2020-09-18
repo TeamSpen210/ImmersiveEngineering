@@ -413,6 +413,11 @@ public class ManualEntry implements Comparable<ManualEntry>
 		public void recalculateCraftingRecipes()
 		{
 		}
+
+		@Override
+		public void genHTML(ManualExporter exp, Writer stream) throws IOException
+		{
+		}
 	};
 
 	public static class EntryData
