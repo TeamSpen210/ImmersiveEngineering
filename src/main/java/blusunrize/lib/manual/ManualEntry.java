@@ -8,6 +8,7 @@
 
 package blusunrize.lib.manual;
 
+import blusunrize.immersiveengineering.client.manual.export.HTMLFormatting;
 import blusunrize.immersiveengineering.client.manual.export.ManualExporter;
 import blusunrize.lib.manual.SplitResult.Token;
 import blusunrize.lib.manual.gui.ManualScreen;
@@ -121,9 +122,9 @@ public class ManualEntry implements Comparable<ManualEntry>
 		}
 		for(List<Token> line: toGen.text) {
 			for(Token tok: line) {
-				stream.write(tok.getContent().map(Function.identity(), link -> link.genHTML(this, exp)));
-				stream.write(" ");
+				stream.write(tok.getContent().map(HTMLFormatting::convert, link -> link.genHTML(this, exp)));
 			}
+			stream.write(" ");
 		}
 		if (!toGen.special.isAbove()) {
 			toGen.special.genHTML(exp, stream);
