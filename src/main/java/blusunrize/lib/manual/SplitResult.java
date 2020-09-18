@@ -8,6 +8,7 @@
 
 package blusunrize.lib.manual;
 
+import blusunrize.immersiveengineering.client.manual.export.HTMLFormatting;
 import blusunrize.immersiveengineering.client.manual.export.ManualExporter;
 import blusunrize.lib.manual.links.Link;
 import com.google.common.collect.ImmutableList;
@@ -16,9 +17,7 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMaps;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntMaps;
-import net.minecraft.util.ResourceLocation;
 
-import java.io.File;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.function.Function;
@@ -113,7 +112,11 @@ public class SplitResult
 
 		public String genHTML(ManualEntry entry, ManualExporter exp)
 		{
-			return "<a href=\"" + parent.getTarget(entry).toString() + "\">" + text + "</a>";
+			Path source = exp.file("pages", entry.getLocation(), ".html").toPath().getParent();
+			Path target = exp.file("pages", parent.getTarget(entry), "html").toPath();
+
+			// TODO: Path anchors
+			return "<a href=\"" + source.relativize(target).toString() + "\">" + HTMLFormatting.convert(text) + "</a>";
 		}
 	}
 }
