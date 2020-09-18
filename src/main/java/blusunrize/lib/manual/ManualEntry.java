@@ -8,8 +8,7 @@
 
 package blusunrize.lib.manual;
 
-import blusunrize.immersiveengineering.client.manual.ManualExporter;
-import blusunrize.lib.manual.SplitResult.LinkPart;
+import blusunrize.immersiveengineering.client.manual.export.ManualExporter;
 import blusunrize.lib.manual.SplitResult.Token;
 import blusunrize.lib.manual.gui.ManualScreen;
 import blusunrize.lib.manual.links.EntryWithLinks;
@@ -38,7 +37,6 @@ import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.regex.Pattern;

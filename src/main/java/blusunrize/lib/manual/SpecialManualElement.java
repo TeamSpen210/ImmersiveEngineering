@@ -8,7 +8,7 @@
 
 package blusunrize.lib.manual;
 
-import blusunrize.immersiveengineering.client.manual.ManualExporter;
+import blusunrize.immersiveengineering.client.manual.export.ManualExporter;
 import blusunrize.lib.manual.gui.ManualScreen;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.item.ItemStack;

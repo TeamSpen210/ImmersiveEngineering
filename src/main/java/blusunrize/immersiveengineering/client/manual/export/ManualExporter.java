@@ -1,4 +1,4 @@
-package blusunrize.immersiveengineering.client.manual;
+package blusunrize.immersiveengineering.client.manual.export;
 
 import blusunrize.immersiveengineering.api.ManualHelper;
 import blusunrize.immersiveengineering.common.util.IELogger;

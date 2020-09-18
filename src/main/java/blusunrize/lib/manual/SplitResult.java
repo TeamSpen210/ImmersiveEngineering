@@ -8,7 +8,7 @@
 
 package blusunrize.lib.manual;
 
-import blusunrize.immersiveengineering.client.manual.ManualExporter;
+import blusunrize.immersiveengineering.client.manual.export.ManualExporter;
 import blusunrize.lib.manual.links.Link;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Either;
